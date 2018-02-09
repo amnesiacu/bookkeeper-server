@@ -1,3 +1,5 @@
 {
-  "uri": "mongodb://<dbUser>:<dbPassword>@<dbHost>:<dbPort>/bkmrk"
+  port: 3000,
+  "uri": "mongodb://<dbUser>:<dbPassword>@<dbHost>:<dbPort>/<db>"
 }
+

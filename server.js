@@ -4,9 +4,9 @@ const io = require('socket.io')(http);
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
-const mongoUri = require('./config.json').uri;
+const {uri, port} = require('./config.json');
 
-mongoose.connect(mongoUri);
+mongoose.connect(uri);
 
 const Bookmark = mongoose.model('Bookmark', { 
   title: String,
@@ -31,6 +31,7 @@ app.get('/', async (req, res) => {
 app.get('/api', async (req, res) => {
   res.sendFile(__dirname + '/index.html');
 })
+
 app.get('/api/bookmark', async (req, res) => {
   console.log('GET  - api/bookmark');
   let bookmarks = await Bookmark.find()
@@ -55,7 +56,7 @@ app.delete('/api/bookmark', async (req, res) => {
   res.send({message: 'ok'});
 });
 
-http.listen(3007, () => {
-  console.log('listening on http://localhost:3007/');
+http.listen(port, () => {
+  console.log(`listening on localhost:${port}/`);
 });
     
